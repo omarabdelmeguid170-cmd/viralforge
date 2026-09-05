@@ -176,14 +176,15 @@ window.navigator.clipboard = { writeText: () => Promise.resolve() };
 const trend = window.eval("Store.get('trendscan', null)");
     ok("trend scan fallback dataset", !!trend && trend.items.length >= 8, "count=" + (trend && trend.items.length));
 
-    // monetization ready-state (no owner config set)
+    // monetization ready-state
     window.location.hash = "#/support"; window.eval("Router.render()");
     const sup = window.document.getElementById("m-support");
     ok("support page renders", !!sup.querySelector(".page-head"), "");
     ok("support page has no dead/placeholder links", !/href="(undefined|https?:\/\/[^"]*YOURNAME)"/i.test(sup.innerHTML), "");
     ok("github nav hidden without a repo URL", window.document.getElementById("navGithub").style.display === "none", "");
-    ok("google adsense script NOT injected without config", !window.document.getElementById("adsByGoogle"), "");
-    ok("ad placeholders intact without config", /AD SLOT/.test(window.document.getElementById("adSidebar").innerHTML), "");
+    ok("adsense head script present with client id", !!window.document.getElementById("adsByGoogle") && /ca-pub-4259199993762672/.test(window.document.getElementById("adsByGoogle").getAttribute("src")), "");
+    ok("no ins units injected without slot ids", !window.document.querySelector("ins.adsbygoogle"), "");
+    ok("ad placeholders intact without slot ids", /AD SLOT/.test(window.document.getElementById("adSidebar").innerHTML), "");
 
     // i18n + theme
     ok("i18n present (en default, ltr)", typeof window.I18n.t === "function" && window.document.documentElement.lang === "en" && window.document.documentElement.dir === "ltr", "");

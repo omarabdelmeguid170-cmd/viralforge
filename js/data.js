@@ -26,7 +26,7 @@ window.CONFIG = {
      With nothing set, the dashed placeholders stay visible.
      ------------------------------------------------------------------ */
   adsense: {
-    client: null,                             // "ca-pub-XXXXXXXXXXXXXXXX"
+    client: "ca-pub-4259199993762672",         // "ca-pub-XXXXXXXXXXXXXXXX"
     slots: {
       sidebar: null,                          // your "data-ad-slot" id for the 240x400 unit
       footer: null                            // your "data-ad-slot" id for the 728x90 unit
